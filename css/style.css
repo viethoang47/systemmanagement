@@ -1,0 +1,406 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hide {
+  display: none !important;
+}
+
+.open {
+  display: block !important;
+}
+
+.open-flex {
+  display: flex !important;
+}
+
+.active {
+  background-color: #0d58ae;
+  color: #fff;
+}
+
+.btn {
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: #0d58ae;
+  color: #fff;
+}
+
+.btn:not(:last-child) {
+  margin-right: 12px;
+}
+
+.btn:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #00e1ff;
+  transition: 0.5s;
+}
+
+#wrapper {
+  position: relative;
+}
+
+#wrapper img {
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+  background: no-repeat top center;
+}
+
+#wrapper h1 {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 70px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 2;
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.9);
+  text-align: center;
+  width: 100%;
+}
+
+#wrapper h1 span {
+  color: rgb(0, 255, 60);
+}
+
+#wrapper #button,
+#wrapper #account {
+  position: absolute;
+  top: 30px;
+  right: 100px;
+}
+
+#formReg {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #fff;
+  width: 500px;
+  border-radius: 20px;
+  display: none;
+}
+
+.form__header {
+  background-color: #186fd2;
+  padding: 16px;
+  color: #fff;
+  border-radius: 20px 20px 0 0;
+}
+
+.form__header h3 {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.form__form {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+.form__form input {
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  outline: none;
+  font-size: 16px;
+}
+
+.form__btn {
+  text-align: right;
+  margin: 16px;
+}
+
+#formLog {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #fff;
+  width: 500px;
+  border-radius: 20px;
+  display: none;
+}
+
+#account {
+  display: flex;
+  position: relative;
+}
+
+#account #user {
+  color: #fff;
+  font-size: 30px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#account #list {
+  position: absolute;
+  background-color: #fff;
+  top: 40px;
+  right: 10px;
+  list-style: none;
+  padding: 12px;
+  display: none;
+  border-radius: 10px 0 10px 10px;
+  width: 160px;
+}
+
+#account #list li {
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+#searchForm {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  display: none;
+  width: 70%;
+}
+
+#searchForm h2 {
+  font-size: 60px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 2;
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.9);
+}
+
+#searchForm input {
+  font-size: 30px;
+  border: none;
+  outline: none;
+  padding: 12px;
+  width: 50%;
+  margin-bottom: 20px;
+  border-radius: 20px;
+}
+
+#formCustomer {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 700px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 50px;
+  display: none;
+}
+
+#tbl__customer {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #fff;
+  text-align: center;
+  border-collapse: collapse;
+  border-radius: 20px;
+  overflow: hidden;
+  display: none;
+  width: auto;
+}
+
+#tbl__customer th,
+#tbl__customer td {
+  border: 1px solid #bbb;
+  padding: 12px;
+}
+
+#formCustomer h2 {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+#formCustomer .item {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+#formCustomer .cus__btn {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.cus-btn {
+  width: 150px;
+}
+
+#formCustomer .item label {
+  width: 300px;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+#formCustomer .item input {
+  outline: none;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+#tbl__page {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #fff;
+  display: none;
+}
+#tbl__page ul {
+  display: flex;
+  list-style: none;
+}
+.number__page {
+  display: flex;
+}
+
+#tbl__page li {
+  padding: 12px;
+  cursor: pointer;
+}
+/* #tbl__page li .active {
+  background-color: #0d58ae;
+  color: #fff;
+} */
+
+#form__bill {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 400px;
+  background-color: #009514;
+  border-radius: 20px;
+  display: none;
+}
+
+#form__bill h2 {
+  text-align: center;
+  padding: 16px 0;
+  font-size: 28px;
+}
+
+.itemBill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.itemBill label {
+  width: 150px;
+}
+
+.itemBill input {
+  width: 200px;
+  padding: 8px;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+.btnBill {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#lookup__info {
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #fff;
+  padding: 8px;
+  border-radius: 20px;
+  display: none;
+}
+
+#lookup {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+#lookup label {
+  margin: 8px 0;
+  display: block;
+}
+
+#lookup label p {
+  display: inline-block;
+  font-weight: bold;
+}
+
+#lookup label span {
+  color: red;
+  font-weight: bold;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-top {
+  margin-bottom: 20px;
+}
+
+table {
+  border: 1px solid #000;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  text-transform: uppercase;
+}
+th,
+td {
+  border: 1px solid #000;
+}
+
+table #chisomoi,
+table #chisocu {
+  text-align: right;
+}
+
+.btnClose {
+  margin-top: 20px;
+}
+
+#tongcong,
+#thanhtien,
+#thueVAT,
+#total {
+  font-weight: bold;
+}

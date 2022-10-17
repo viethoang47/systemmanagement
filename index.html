@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div id="wrapper">
+      <img src="./images/bg.png" alt="" />
+
+      <h1 id="titleMain">
+        Chào mừng đến với <br />
+        <span>Hệ thống quản lý thông tin người dùng</span>
+      </h1>
+
+      <div id="button">
+        <button type="button" class="btn" id="btnReg">Register</button>
+        <button type="button" class="btn" id="btnLogin">Login</button>
+      </div>
+
+      <form id="formReg">
+        <div class="form__header">
+          <h3>Đăng ký thông tin user</h3>
+        </div>
+        <div class="form__form">
+          <input type="text" id="txtName" placeholder="Enter name" />
+          <input type="email" id="txtEmail" placeholder="Enter email" />
+          <input type="text" id="txtPhone" placeholder="Enter phone" />
+          <input type="password" id="txtPass" placeholder="Enter pass" />
+        </div>
+        <div class="form__btn">
+          <button type="button" class="btn" id="btnSave">Save</button>
+          <button type="button" class="btn" id="btnCloseReg">Close</button>
+        </div>
+      </form>
+
+      <form id="formLog">
+        <div class="form__header">
+          <h3>Đăng nhập hệ thống</h3>
+        </div>
+        <div class="form__form">
+          <input type="email" id="txtEmailLog" placeholder="Enter email" />
+          <input type="password" id="txtPassLog" placeholder="Enter pass" />
+        </div>
+        <div class="form__btn">
+          <button type="button" class="btn" id="btnLog">Đăng nhập</button>
+          <button type="button" class="btn" id="btnCloseLog">Close</button>
+        </div>
+      </form>
+
+      <div id="account"></div>
+
+      <div id="searchForm">
+        <h2>Tra cứu thông tin điện tử</h2>
+        <form action="">
+          <input type="search" id="txtSearch" />
+        </form>
+        <button class="btn" id="btnSearch">Tra cứu</button>
+      </div>
+
+      <div class="customer">
+        <form id="formCustomer">
+          <h2>Calculate monthly eletricity bill for customers</h2>
+          <div class="item">
+            <label for="">Name:</label>
+            <input type="text" id="cusName" />
+          </div>
+          <div class="item">
+            <label for="">Address:</label>
+            <input type="text" id="cusAddress" />
+          </div>
+          <div class="item">
+            <label for="">Start-up period:</label>
+            <input type="text" id="cusStart" />
+          </div>
+          <div class="item">
+            <label for="">End-of-item-digits:</label>
+            <input type="text" id="cusEnd" />
+          </div>
+          <div class="item">
+            <label for="">The VAT tax:</label>
+            <input type="text" id="cusVat" placeholder="15%" />
+          </div>
+
+          <div class="item cus__btn">
+            <button type="button" class="btn cus-btn" id="cusCal">
+              Calculate
+            </button>
+            <button type="button" class="btn cus-btn" id="cusClear">
+              Clear
+            </button>
+          </div>
+        </form>
+
+        <table id="tbl__customer">
+          <thead>
+            <th>STT</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Start-up period</th>
+            <th>End-of-item digits</th>
+            <th>VAT</th>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <div id="tbl__page">
+          <ul>
+            <li class="btnPrev"><i class="fa-solid fa-angle-left"></i></li>
+
+            <div class="number__page">
+              <!-- <li class="active">1</li>
+            <li>2</li>
+            <li>3</li> -->
+            </div>
+
+            <li class="btnNext"><i class="fa-solid fa-angle-right"></i></li>
+          </ul>
+        </div>
+      </div>
+
+      <form id="form__bill">
+        <h2>Update bill for customer</h2>
+        <div class="itemBill">
+          <label for="">Name:</label>
+          <input type="text" id="billName" />
+        </div>
+        <div class="itemBill">
+          <label for="">Address:</label>
+          <input type="text" id="billAddress" />
+        </div>
+        <div class="itemBill">
+          <label for="">Start-up period:</label>
+          <input type="text" id="billStart" />
+        </div>
+        <div class="itemBill">
+          <label for="">End-of-item-digits:</label>
+          <input type="text" id="billEnd" />
+        </div>
+        <div class="itemBill">
+          <label for="">The VAT tax:</label>
+          <input type="text" id="billVat" />
+        </div>
+
+        <div class="itemBill">
+          <input type="hidden" id="abc" />
+        </div>
+
+        <div class="itemBill btnBill">
+          <button type="button" class="btn cus-btn" id="billUpdate">
+            Update
+          </button>
+          <button type="button" class="btn cus-btn" id="billCancle">
+            Cancle
+          </button>
+        </div>
+      </form>
+
+      <div id="lookup__info">
+        <form action="" id="lookup">
+          <div class="item-top">
+            <h3>Tổng công ty điện lực thành phố hà nội</h3>
+            <label
+              >Địa chỉ:
+              <p>Tổ 11 - P. Phan Thiết...</p></label
+            >
+            <div class="list-item">
+              <label
+                >Điện thoại:
+                <p>027....</p></label
+              >
+              <label
+                >MST:
+                <p>0100100417-017</p></label
+              >
+              <label>ĐT sửa chữa: <span>19006769</span></label>
+            </div>
+          </div>
+          <div class="item-bot">
+            <label
+              >Tên khách hàng:
+              <p id="lookupName"></p
+            ></label>
+            <label
+              >Địa chỉ:
+              <p id="lookupAddress"></p
+            ></label>
+            <div class="list-item">
+              <div class="item">
+                <label>Điện thoại: </label>
+                <label>Mã KH: <span>PA12TXTX39</span></label>
+                <label
+                  >Mã trạm:
+                  <p>TXCE00082</p></label
+                >
+                <label
+                  >Mã giá: KT:
+                  <p>100% * SHBT.A</p></label
+                >
+              </div>
+
+              <div class="item">
+                <label>MST: </label>
+                <label>Mã T.toán: <span>PA12TXTX39</span></label>
+                <label
+                  >Cấp ĐA:
+                  <p>1</p></label
+                >
+              </div>
+
+              <div class="item">
+                <label
+                  >Số công tơ:
+                  <p>140229....</p></label
+                >
+                <label
+                  >Mã NN:
+                  <p>4401</p></label
+                >
+                <label
+                  >Số GCS:
+                  <p>TXXCOI12</p></label
+                >
+              </div>
+
+              <div class="item">
+                <label
+                  >Số hộ:
+                  <p>1</p></label
+                >
+                <label
+                  >Mã tổ:
+                  <p>01</p></label
+                >
+                <label
+                  >P GCS:
+                  <p>21</p></label
+                >
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <table id="tbl__lookup">
+          <thead>
+            <th>Bộ CS</th>
+            <th>Chỉ số mới</th>
+            <th>Chỉ số cũ</th>
+            <th>HS Nhân</th>
+            <th>ĐN Tiêu thụ</th>
+            <th>ĐN Trực tiếp</th>
+            <th>Đn trừ phụ</th>
+            <th>ĐN Thực tế</th>
+            <th>Đơn giá</th>
+            <th>Thành tiền</th>
+          </thead>
+          <tbody>
+            <tr style="text-align: center">
+              <td>KT</td>
+              <td id="chisomoi"></td>
+              <td id="chisocu"></td>
+              <td id="tieuthu"></td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td id="thucte"></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <!-- <tr style="text-align: right">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <p>ASD</p>
+                <p>ASD</p>
+                <p>ASD</p>
+              </td>
+              <td></td>
+              <td></td>
+            </tr> -->
+
+            <tr>
+              <td colspan="7">Cộng</td>
+              <td id="tongcong"></td>
+              <td></td>
+              <td id="thanhtien"></td>
+            </tr>
+            <tr>
+              <td colspan="7">Thuế suất GTGT: 15%</td>
+              <td colspan="2">Thuế GTGT:</td>
+              <td id="thueVAT"></td>
+            </tr>
+            <tr>
+              <td colspan="9">Tổng cộng tiền thanh toán:</td>
+              <td id="total"></td>
+            </tr>
+            <tr>
+              <td colspan="10">
+                Số tiền bằng chữ:
+                <p id="bangchu"></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" id="close" class="btn btnClose">Close</button>
+      </div>
+    </div>
+    <script src="./js/app.js"></script>
+  </body>
+</html>
