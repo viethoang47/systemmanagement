@@ -188,7 +188,7 @@ account.onclick = function () {
     }
     logout.onclick = function () {
         if (confirm('logout')) {
-            window.location.replace('/BTCD/index.html')
+            window.location.replace('systemmanagement')
         }
     }
 }
