@@ -24,8 +24,6 @@ var btnPrev = $('.btnPrev');
 var number__page = $('.number__page');
 var btnSearch = $('#btnSearch');
 var lookup__info = $('#lookup__info');
-var lookupName = $('#lookupName');
-var lookupAddress = $('#lookupAddress');
 var close = $('#close');
 var form__bill = $('#form__bill');
 var billUpdate = $('#billUpdate');
@@ -122,7 +120,6 @@ btnLog.onclick = function () {
 
     var exist = data.find(data => data.email == emailLog && data.pass == passLog);
 
-    console.log(exist);
     if (!exist) {
         alert('False')
         return
@@ -156,38 +153,36 @@ btnCloseLog.onclick = function () {
 
 // Click Username
 account.onclick = function () {
-    var list = $('#list')
-    var search = $('#search')
-    var manager = $('#manager')
-    var logout = $('#logout')
+    var list = $('#list');
+    var search = $('#search');
+    var manager = $('#manager');
+    var logout = $('#logout');
 
 
-    list.classList.toggle('open')
+    list.classList.toggle('open');
 
     search.onclick = function () {
-        searchForm.classList.add('open')
-        formCustomer.classList.remove('open')
-        tbl__customer.classList.remove('open')
-        titleMain.classList.add('hide')
-        tbl__page.classList.remove('open-flex')
-
+        searchForm.classList.add('open');
+        formCustomer.classList.remove('open');
+        tbl__customer.classList.remove('open');
+        titleMain.classList.add('hide');
+        tbl__page.classList.remove('open-flex');
     }
     manager.onclick = function () {
-        formCustomer.classList.add('open')
-        tbl__customer.classList.add('open')
-        searchForm.classList.remove('open')
-        titleMain.classList.add('hide')
-        lookup__info.classList.remove('open')
+        formCustomer.classList.add('open');
+        tbl__customer.classList.add('open');
+        searchForm.classList.remove('open');
+        titleMain.classList.add('hide');
+        lookup__info.classList.remove('open');
         if (arrPerson.length > 3) {
-            tbl__page.classList.add('open-flex')
-            showListPages()
-            next()
+            tbl__page.classList.add('open-flex');
+            showListPages();
         }
 
     }
     logout.onclick = function () {
         if (confirm('Đăng xuất khỏi hệ thông?')) {
-            window.location.replace('')
+            window.location.replace('');
         }
     }
 }
@@ -201,38 +196,38 @@ btnSearch.onclick = function () {
         return;
     }
 
-    var person = localStorage.getItem(storageKeyPerson)
-    var data = JSON.parse(person)
-    var exist = data.find(data => data.name == txtSearch)
+    var person = localStorage.getItem(storageKeyPerson);
+    var data = JSON.parse(person);
+    var exist = data.find(data => data.name == txtSearch);
 
-    lookup__info.classList.add('open')
+    lookup__info.classList.add('open');
 
-    lookupName.innerHTML = exist.name
-    lookupAddress.innerHTML = exist.address
+    $('#lookupName').innerHTML = exist.name;
+    $('#lookupAddress').innerHTML = exist.address;
 
-    $('#chisomoi').innerHTML = exist.end
-    $('#chisocu').innerHTML = exist.start
-    $('#tieuthu').innerHTML = exist.end - exist.start
-    $('#thucte').innerHTML = exist.end - exist.start
-    $('#tongcong').innerHTML = exist.end - exist.start
+    $('#chisomoi').innerHTML = exist.end;
+    $('#chisocu').innerHTML = exist.start;
+    $('#tieuthu').innerHTML = exist.end - exist.start;
+    $('#thucte').innerHTML = exist.end - exist.start;
+    $('#tongcong').innerHTML = exist.end - exist.start;
 
     if (exist.end - exist.start > 0 && exist.end - exist.start < 50) {
-        $('#thanhtien').innerHTML = (exist.end - exist.start) * 1400
+        $('#thanhtien').innerHTML = (exist.end - exist.start) * 1400;
     } else if (exist.end - exist.start > 50 && exist.end - exist.start < 100) {
-        $('#thanhtien').innerHTML = (exist.end - exist.start) * 1500
+        $('#thanhtien').innerHTML = (exist.end - exist.start) * 1500;
     } else if (exist.end - exist.start > 100) {
-        $('#thanhtien').innerHTML = (exist.end - exist.start) * 1600
+        $('#thanhtien').innerHTML = (exist.end - exist.start) * 1600;
     }
 
-    $('#thueVAT').innerHTML = ((((exist.end - exist.start) * 1600) * 15) / 100)
-    $('#total').innerHTML = (exist.end - exist.start) * 1600 + ((((exist.end - exist.start) * 1600) * 15) / 100)
-    $('#bangchu').innerHTML = 'Đoạn này em chưa làm được!!!'
+    $('#thueVAT').innerHTML = ((((exist.end - exist.start) * 1600) * 15) / 100);
+    $('#total').innerHTML = (exist.end - exist.start) * 1600 + ((((exist.end - exist.start) * 1600) * 15) / 100);
+    $('#bangchu').innerHTML = 'Đoạn này em chưa làm được!!!';
 
 }
 
 // Close Lookup
 close.onclick = function () {
-    lookup__info.classList.remove('open')
+    lookup__info.classList.remove('open');
 }
 
 
@@ -325,6 +320,8 @@ cusClear.onclick = function () {
     $('#cusStart').value = '';
     $('#cusEnd').value = '';
     $('#cusVat').value = '';
+    $('.errorStart').innerHTML = '';
+    $('.errorEnd').innerHTML = ''
 }
 
 // Show Customer in the table
@@ -359,7 +356,7 @@ function editPerson(stt) {
     $('#billStart').value = arrPerson[stt].start
     $('#billEnd').value = arrPerson[stt].end
     $('#billVat').value = arrPerson[stt].vat
-    $('#abc').value = stt
+    $('#stt').value = stt
     form__bill.classList.add('open')
 }
 
@@ -380,9 +377,9 @@ function delPerson(stt) {
 // Update Bill for Customer
 billUpdate.onclick = function () {
 
-    var abc = $('#abc').value
+    var stt = $('#stt').value
 
-    arrPerson[abc] = {
+    arrPerson[stt] = {
         name: $('#billName').value,
         address: $('#billAddress').value,
         start: $('#billStart').value,

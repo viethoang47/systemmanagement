@@ -218,7 +218,7 @@ body {
 
 #tbl__customer {
   position: absolute;
-  top: 55%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%);
   background-color: #fff;
@@ -278,7 +278,7 @@ body {
 
 #tbl__page {
   position: absolute;
-  top: 80%;
+  top: 90%;
   left: 50%;
   transform: translate(-50%);
   background-color: #fff;
