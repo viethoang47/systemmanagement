@@ -12,72 +12,50 @@ var btnCloseReg = $('#btnCloseReg');
 var btnLog = $('#btnLog');
 var btnCloseLog = $('#btnCloseLog');
 var account = $('#account');
-var searchForm = $('#searchForm')
-var titleMain = $('#titleMain')
-var formCustomer = $('#formCustomer')
-var tbl__customer = $('#tbl__customer')
-var cusCal = $('#cusCal')
-var cusClear = $('#cusClear')
-var tbl__page = $('#tbl__page')
-var btnNext = $('.btnNext')
-var btnPrev = $('.btnPrev')
-var number__page = $('.number__page')
-var btnSearch = $('#btnSearch')
+var searchForm = $('#searchForm');
+var titleMain = $('#titleMain');
+var formCustomer = $('#formCustomer');
+var tbl__customer = $('#tbl__customer');
+var cusCal = $('#cusCal');
+var cusClear = $('#cusClear');
+var tbl__page = $('#tbl__page');
+var btnNext = $('.btnNext');
+var btnPrev = $('.btnPrev');
+var number__page = $('.number__page');
+var btnSearch = $('#btnSearch');
+var lookup__info = $('#lookup__info');
+var lookupName = $('#lookupName');
+var lookupAddress = $('#lookupAddress');
+var close = $('#close');
+var form__bill = $('#form__bill');
+var billUpdate = $('#billUpdate');
+var billCancle = $('#billCancle');
 
-var lookup__info = $('#lookup__info')
-var lookupName = $('#lookupName')
-var lookupAddress = $('#lookupAddress')
-
-var chisomoi = $('#chisomoi')
-var chisocu = $('#chisocu')
-var tieuthu = $('#tieuthu')
-var thucte = $('#thucte')
-var tongcong = $('#tongcong')
-var thanhtien = $('#thanhtien')
-var thueVAT = $('#thueVAT')
-var total = $('#total')
-var bangchu = $('#bangchu')
-
-var close = $('#close')
-
-
-var form__bill = $('#form__bill')
-var billUpdate = $('#billUpdate')
-var billCancle = $('#billCancle')
-
-
-
-
-// Save data
-var storageKey = 'account'
+// Save Account to the LocalStorage
+var storageKey = 'account';
 var dataString = localStorage.getItem(storageKey);
-var arrUser
+var arrUser;
 if (dataString) {
-    arrUser = JSON.parse(dataString)
+    arrUser = JSON.parse(dataString);
 } else {
-    arrUser = []
+    arrUser = [];
 }
 
 //Click button Register
 btnReg.onclick = function () {
-
-
-    formReg.classList.toggle('open')
-    formLog.classList.remove('open')
+    formReg.classList.toggle('open');
+    formLog.classList.remove('open');
 }
 
 // Click button Save
 btnSave.onclick = function () {
-
-    if (name == '' || email == '' || phone == '' || pass == '') {
-        return
-    }
-
     var name = $('#txtName').value;
     var email = $('#txtEmail').value;
     var phone = $('#txtPhone').value;
     var pass = $('#txtPass').value;
 
+    var regEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var regPhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     var user = {
         name: name,
         email: email,
@@ -86,7 +64,29 @@ btnSave.onclick = function () {
     }
 
 
+    if (name == '' || email == '' || phone == '' || pass == '') {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return;
+    }
+    if (email.length > 0) {
+        if (regEmail.test(email)) {
+            $('#emailError').innerHTML = '';
+        } else {
+            $('#emailError').style.color = 'red';
+            $('#emailError').innerHTML = 'Email không hợp lệ. Vui lòng kiểm tra lại!';
+            return;
+        }
+    }
 
+    if (phone.length > 0) {
+        if (regPhone.test(phone)) {
+            $('#phoneError').innerHTML = '';
+        } else {
+            $('#phoneError').style.color = 'red';
+            $('#phoneError').innerHTML = 'Số điện thoại không hợp lệ. Vui lòng kiểm tra lại!';
+            return;
+        }
+    }
     if (arrUser.push(user)) {
         alert('Đăng ký thành công!')
     }
@@ -96,9 +96,8 @@ btnSave.onclick = function () {
     $('#txtPhone').value = '';
     $('#txtPass').value = '';
 
-    var json = JSON.stringify(arrUser)
-    localStorage.setItem(storageKey, json)
-
+    var json = JSON.stringify(arrUser);
+    localStorage.setItem(storageKey, json);
 }
 
 // Click button Close Register
@@ -112,8 +111,7 @@ btnLogin.onclick = function () {
     formReg.classList.remove('open')
 }
 
-// Click button Đăng nhập
-
+// Đăng nhập
 btnLog.onclick = function () {
 
     var emailLog = $('#txtEmailLog').value;
@@ -147,16 +145,16 @@ btnLog.onclick = function () {
                     <li id="logout">Đăng xuất</li>
                 </ul>`
 
-    document.getElementById('account').innerHTML = acc
+    $('#account').innerHTML = acc
 
 }
 
-// Click button Close Login
+// Close Login
 btnCloseLog.onclick = function () {
     formLog.classList.remove('open')
 }
 
-// Click username
+// Click Username
 account.onclick = function () {
     var list = $('#list')
     var search = $('#search')
@@ -173,7 +171,6 @@ account.onclick = function () {
         titleMain.classList.add('hide')
         tbl__page.classList.remove('open-flex')
 
-
     }
     manager.onclick = function () {
         formCustomer.classList.add('open')
@@ -184,53 +181,62 @@ account.onclick = function () {
         if (arrPerson.length > 3) {
             tbl__page.classList.add('open-flex')
             showListPages()
+            next()
         }
+
     }
     logout.onclick = function () {
-        if (confirm('logout')) {
+        if (confirm('Đăng xuất khỏi hệ thông?')) {
             window.location.replace('')
         }
     }
 }
 
-
+// Click Search
 btnSearch.onclick = function () {
-
-    lookup__info.classList.add('open')
-
     var txtSearch = $('#txtSearch').value;
+
+    if (txtSearch == '') {
+        alert('Vui lòng nhập thông tin cần tra cứu!')
+        return;
+    }
+
     var person = localStorage.getItem(storageKeyPerson)
     var data = JSON.parse(person)
     var exist = data.find(data => data.name == txtSearch)
 
+    lookup__info.classList.add('open')
+
     lookupName.innerHTML = exist.name
     lookupAddress.innerHTML = exist.address
 
-    chisomoi.innerHTML = exist.end
-    chisocu.innerHTML = exist.start
-    tieuthu.innerHTML = exist.end - exist.start
-    thucte.innerHTML = exist.end - exist.start
-    tongcong.innerHTML = exist.end - exist.start
+    $('#chisomoi').innerHTML = exist.end
+    $('#chisocu').innerHTML = exist.start
+    $('#tieuthu').innerHTML = exist.end - exist.start
+    $('#thucte').innerHTML = exist.end - exist.start
+    $('#tongcong').innerHTML = exist.end - exist.start
 
     if (exist.end - exist.start > 0 && exist.end - exist.start < 50) {
-        thanhtien.innerHTML = (exist.end - exist.start) * 1400
+        $('#thanhtien').innerHTML = (exist.end - exist.start) * 1400
     } else if (exist.end - exist.start > 50 && exist.end - exist.start < 100) {
-        thanhtien.innerHTML = (exist.end - exist.start) * 1500
+        $('#thanhtien').innerHTML = (exist.end - exist.start) * 1500
     } else if (exist.end - exist.start > 100) {
-        thanhtien.innerHTML = (exist.end - exist.start) * 1600
+        $('#thanhtien').innerHTML = (exist.end - exist.start) * 1600
     }
 
-    thueVAT.innerHTML = ((((exist.end - exist.start) * 1600) * 15) / 100)
-    total.innerHTML = (exist.end - exist.start) * 1600 + ((((exist.end - exist.start) * 1600) * 15) / 100)
+    $('#thueVAT').innerHTML = ((((exist.end - exist.start) * 1600) * 15) / 100)
+    $('#total').innerHTML = (exist.end - exist.start) * 1600 + ((((exist.end - exist.start) * 1600) * 15) / 100)
+    $('#bangchu').innerHTML = 'Đoạn này em chưa làm được!!!'
 
 }
 
-
+// Close Lookup
 close.onclick = function () {
     lookup__info.classList.remove('open')
 }
 
 
+// Save Customer to the LocalStorage
 var storageKeyPerson = 'person'
 var dtString = localStorage.getItem(storageKeyPerson);
 var arrPerson
@@ -240,6 +246,7 @@ if (dtString) {
     arrPerson = []
 }
 
+// Calculator customer
 cusCal.onclick = function () {
     var cusName = $('#cusName').value;
     var cusAddress = $('#cusAddress').value;
@@ -248,6 +255,7 @@ cusCal.onclick = function () {
     var cusVat = $('#cusVat').value;
 
     if (cusName == '' || cusAddress == '' || cusStart == '' || cusEnd == '' || cusVat == '') {
+        alert('Vui lòng nhập đầy đủ thông tin!')
         return
     }
 
@@ -258,14 +266,59 @@ cusCal.onclick = function () {
         this.end = end;
         this.vat = vat;
     }
-
     var newPerson = new Person(cusName, cusAddress, cusStart, cusEnd, cusVat)
-    arrPerson.push(newPerson)
+
+    if (isNaN(cusStart)) {
+        $('.errorStart').style.color = 'red';
+        $('.errorStart').innerHTML = 'Chỉ được nhập số';
+        return
+    } else {
+        $('.errorStart').innerHTML = '';
+    }
+
+    if (isNaN(cusEnd)) {
+        $('.errorEnd').style.color = 'red';
+        $('.errorEnd').innerHTML = 'Chỉ được nhập số';
+        return
+    } else {
+        $('.errorEnd').innerHTML = '';
+    }
+
+    if (cusStart == 0) {
+        $('.errorStart').style.color = 'red'
+        $('.errorStart').innerHTML = 'Dữ liệu phải lớn hơn 0'
+        return
+    } else if (cusStart != 0) {
+        $('.errorStart').innerHTML = ''
+    }
+
+    if (cusEnd == 0) {
+        $('.errorEnd').style.color = 'red'
+        $('.errorEnd').innerHTML = 'Dữ liệu phải lớn hơn 0'
+        return
+    } else if (cusEnd != 0) {
+        $('.errorEnd').innerHTML = ''
+    }
+
+
+    if (cusStart >= cusEnd) {
+        alert('End phải lớn hơn Start!')
+        return
+    } else {
+        arrPerson.push(newPerson)
+    }
+
+    if (arrPerson.length > 3) {
+        tbl__page.classList.add('open-flex')
+        showListPages()
+    }
     showPerson()
+
     var jsonPerson = JSON.stringify(arrPerson)
     localStorage.setItem(storageKeyPerson, jsonPerson)
 }
 
+// Clear Form Calculator
 cusClear.onclick = function () {
     $('#cusName').value = '';
     $('#cusAddress').value = '';
@@ -274,6 +327,7 @@ cusClear.onclick = function () {
     $('#cusVat').value = '';
 }
 
+// Show Customer in the table
 function showPerson() {
     var table = '';
 
@@ -294,66 +348,10 @@ function showPerson() {
         </tr>`
         }
     })
-    document.querySelector('#tbl__customer tbody').innerHTML = table;
-
-    showListPages()
+    $('#tbl__customer tbody').innerHTML = table;
 }
 
-var idPages = 3;
-var currenPage = 1;
-var start = 0;
-var end = idPages;
-var totalPage = Math.ceil(arrPerson.length / idPages)
-
-
-function showListPages() {
-    var list = ''
-    list += `<li class="active">${1}</li>`
-    for (var i = 2; i <= totalPage; i++) {
-        list += `<li>${i}</li>`
-    }
-    document.querySelector('.number__page').innerHTML = list
-    changePage()
-}
-
-function changePage() {
-    var cPage = $$('.number__page li')
-
-    // cPage.forEach((e) => {
-    //     e.addEventListener("click", function () {
-
-    //     });
-    // })
-
-    for (var i = 0; i < cPage.length; i++) {
-        cPage[i].addEventListener('click', () => {
-            console.log(i);
-        })
-    }
-}
-
-btnNext.onclick = function () {
-    currenPage++
-    if (currenPage > totalPage) {
-        currenPage = totalPage
-    }
-    start = (currenPage - 1) * idPages
-    end = currenPage * idPages
-    showPerson()
-}
-
-btnPrev.onclick = function () {
-    currenPage--
-    if (currenPage <= 1) {
-        currenPage = 1
-    }
-    start = (currenPage - 1) * idPages
-    end = currenPage * idPages
-    showPerson()
-}
-
-
-
+// Edit Customer
 function editPerson(stt) {
 
     $('#billName').value = arrPerson[stt].name
@@ -365,6 +363,7 @@ function editPerson(stt) {
     form__bill.classList.add('open')
 }
 
+// Delete Customer
 function delPerson(stt) {
 
     if (confirm('Bạn có chắc chắn muốn xóa không?')) {
@@ -378,6 +377,7 @@ function delPerson(stt) {
     showListPages()
 }
 
+// Update Bill for Customer
 billUpdate.onclick = function () {
 
     var abc = $('#abc').value
@@ -396,17 +396,63 @@ billUpdate.onclick = function () {
     showPerson()
 }
 
+// Cancle form Bill
 billCancle.onclick = function () {
     form__bill.classList.remove('open')
 }
 
-
-
+// Load Customer in Table
 window.onload = function () {
     showPerson()
 }
 
 
+// List Page
+var idPages = 3;
+var currenPage = 1;
+var start = 0;
+var end = idPages;
+var totalPage = Math.ceil(arrPerson.length / idPages)
 
+// Show List Pages
+function showListPages() {
+    var list = ''
+    list += `<li class="active">${1}</li>`
+    for (var i = 2; i <= totalPage; i++) {
+        list += `<li>${i}</li>`
+    }
+    $('.number__page').innerHTML = list
+}
 
+// Pages Number
+function changePage() {
+    // var cPage = $$('.number__page li')
 
+    // for (var i = 0; i < cPage.length; i++) {
+    //     cPage[i].addEventListener('click', () => {
+    //         console.log(i);
+    //     })
+    // }
+}
+
+// Next Page
+btnNext.onclick = function () {
+    currenPage++
+    if (currenPage > totalPage) {
+        currenPage = totalPage
+    }
+    start = (currenPage - 1) * idPages
+    end = currenPage * idPages
+    showPerson()
+}
+
+// Prev Page
+btnPrev.onclick = function () {
+    currenPage--
+    if (currenPage <= 1) {
+        currenPage = 1
+    }
+    start = (currenPage - 1) * idPages
+    end = currenPage * idPages
+    showPerson()
+}

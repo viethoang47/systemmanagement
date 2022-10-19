@@ -36,7 +36,9 @@
         <div class="form__form">
           <input type="text" id="txtName" placeholder="Enter name" />
           <input type="email" id="txtEmail" placeholder="Enter email" />
+          <p id="emailError"></p>
           <input type="text" id="txtPhone" placeholder="Enter phone" />
+          <p id="phoneError"></p>
           <input type="password" id="txtPass" placeholder="Enter pass" />
         </div>
         <div class="form__btn">
@@ -84,10 +86,12 @@
             <label for="">Start-up period:</label>
             <input type="text" id="cusStart" />
           </div>
+          <p class="errorStart"></p>
           <div class="item">
             <label for="">End-of-item-digits:</label>
             <input type="text" id="cusEnd" />
           </div>
+          <p class="errorEnd"></p>
           <div class="item">
             <label for="">The VAT tax:</label>
             <input type="text" id="cusVat" placeholder="15%" />
@@ -119,11 +123,7 @@
           <ul>
             <li class="btnPrev"><i class="fa-solid fa-angle-left"></i></li>
 
-            <div class="number__page">
-              <!-- <li class="active">1</li>
-            <li>2</li>
-            <li>3</li> -->
-            </div>
+            <div class="number__page"></div>
 
             <li class="btnNext"><i class="fa-solid fa-angle-right"></i></li>
           </ul>
@@ -303,7 +303,7 @@
               <td id="thanhtien"></td>
             </tr>
             <tr>
-              <td colspan="7">Thuế suất GTGT: 15%</td>
+              <td colspan="7">Thuế suất GTGT: <span>15%</span></td>
               <td colspan="2">Thuế GTGT:</td>
               <td id="thueVAT"></td>
             </tr>
@@ -314,7 +314,7 @@
             <tr>
               <td colspan="10">
                 Số tiền bằng chữ:
-                <p id="bangchu"></p>
+                <span id="bangchu"></span>
               </td>
             </tr>
           </tbody>
