@@ -318,6 +318,10 @@ body {
   font-size: 28px;
 }
 
+#form__bill p {
+  text-align: center;
+}
+
 .itemBill {
   display: flex;
   align-items: center;

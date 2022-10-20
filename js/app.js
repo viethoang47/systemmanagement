@@ -200,6 +200,11 @@ btnSearch.onclick = function () {
     var data = JSON.parse(person);
     var exist = data.find(data => data.name == txtSearch);
 
+    if (!exist) {
+        alert('Không tìm thấy tên khách hàng!')
+        return
+    }
+
     lookup__info.classList.add('open');
 
     $('#lookupName').innerHTML = exist.name;
@@ -263,6 +268,7 @@ cusCal.onclick = function () {
     }
     var newPerson = new Person(cusName, cusAddress, cusStart, cusEnd, cusVat)
 
+    // Nếu không phải số
     if (isNaN(cusStart)) {
         $('.errorStart').style.color = 'red';
         $('.errorStart').innerHTML = 'Chỉ được nhập số';
@@ -271,6 +277,7 @@ cusCal.onclick = function () {
         $('.errorStart').innerHTML = '';
     }
 
+    // Nếu không phải số
     if (isNaN(cusEnd)) {
         $('.errorEnd').style.color = 'red';
         $('.errorEnd').innerHTML = 'Chỉ được nhập số';
@@ -279,6 +286,7 @@ cusCal.onclick = function () {
         $('.errorEnd').innerHTML = '';
     }
 
+    // Giá trị nhập vào = 0
     if (cusStart == 0) {
         $('.errorStart').style.color = 'red'
         $('.errorStart').innerHTML = 'Dữ liệu phải lớn hơn 0'
@@ -287,6 +295,7 @@ cusCal.onclick = function () {
         $('.errorStart').innerHTML = ''
     }
 
+    // Giá trị nhập vào = 0
     if (cusEnd == 0) {
         $('.errorEnd').style.color = 'red'
         $('.errorEnd').innerHTML = 'Dữ liệu phải lớn hơn 0'
@@ -295,14 +304,16 @@ cusCal.onclick = function () {
         $('.errorEnd').innerHTML = ''
     }
 
-
+    // Giá trị Start lớn hơn hoặc bằng End
     if (cusStart >= cusEnd) {
-        alert('End phải lớn hơn Start!')
-        return
+        $('.errorEnd').style.color = 'red'
+        $('.errorEnd').innerHTML = 'Giá trị End phải lớn hơn giá trị Start'
     } else {
+        $('.errorEnd').innerHTML = ''
         arrPerson.push(newPerson)
     }
 
+    // Show List Pages khi Customer nhiều hơn 3
     if (arrPerson.length > 3) {
         tbl__page.classList.add('open-flex')
         showListPages()
@@ -379,12 +390,58 @@ billUpdate.onclick = function () {
 
     var stt = $('#stt').value
 
+    var billName = $('#billName').value
+    var billAddress = $('#billAddress').value
+    var billStart = $('#billStart').value;
+    var billEnd = $('#billEnd').value;
+    var billVAT = $('#billVat').value
+
     arrPerson[stt] = {
-        name: $('#billName').value,
-        address: $('#billAddress').value,
-        start: $('#billStart').value,
-        end: $('#billEnd').value,
-        vat: $('#billVat').value
+        name: billName,
+        address: billAddress,
+        start: billStart,
+        end: billEnd,
+        vat: billVAT
+    }
+
+    if (isNaN(billStart)) {
+        $('.errorBillStart').style.color = 'red';
+        $('.errorBillStart').innerHTML = 'Chỉ được nhập số';
+        return
+    } else {
+        $('.errorBillStart').innerHTML = '';
+    }
+
+    if (isNaN(billEnd)) {
+        $('.errorBillEnd').style.color = 'red';
+        $('.errorBillEnd').innerHTML = 'Chỉ được nhập số';
+        return
+    } else {
+        $('.errorBillEnd').innerHTML = '';
+    }
+
+    if (billStart == 0) {
+        $('.errorBillStart').style.color = 'red'
+        $('.errorBillStart').innerHTML = 'Dữ liệu phải lớn hơn 0'
+        return
+    } else if (billStart != 0) {
+        $('.errorBillStart').innerHTML = ''
+    }
+
+    if (billEnd == 0) {
+        $('.errorBillEnd').style.color = 'red'
+        $('.errorBillEnd').innerHTML = 'Dữ liệu phải lớn hơn 0'
+        return
+    } else if (billEnd != 0) {
+        $('.errorBillEnd').innerHTML = ''
+    }
+
+
+    if (billStart >= billEnd) {
+        $('.errorBillEnd').style.color = 'red'
+        $('.errorBillEnd').innerHTML = 'Giá trị End phải lớn hơn giá trị Start'
+    } else {
+        $('.errorBillEnd').innerHTML = ''
     }
 
     localStorage.setItem(storageKeyPerson, JSON.stringify(arrPerson))
