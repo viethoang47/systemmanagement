@@ -43,9 +43,10 @@ if (dataString) {
 btnReg.onclick = function () {
     formReg.classList.toggle('open');
     formLog.classList.remove('open');
+    $('#txtName').focus();
 }
 
-// Click button Save
+// Click button Save Register
 btnSave.onclick = function () {
     var name = $('#txtName').value;
     var email = $('#txtEmail').value;
@@ -107,6 +108,7 @@ btnCloseReg.onclick = function () {
 btnLogin.onclick = function () {
     formLog.classList.toggle('open')
     formReg.classList.remove('open')
+    $('#txtEmailLog').focus();
 }
 
 // Đăng nhập
@@ -167,6 +169,8 @@ account.onclick = function () {
         tbl__customer.classList.remove('open');
         titleMain.classList.add('hide');
         tbl__page.classList.remove('open-flex');
+        $('#txtSearch').value = ''
+        $('#txtSearch').focus();
     }
     manager.onclick = function () {
         formCustomer.classList.add('open');
@@ -178,10 +182,11 @@ account.onclick = function () {
             tbl__page.classList.add('open-flex');
             showListPages();
         }
+        $("#cusName").focus();
 
     }
     logout.onclick = function () {
-        if (confirm('Đăng xuất khỏi hệ thông?')) {
+        if (confirm('Bạn muốn đăng xuất khỏi hệ thống?')) {
             window.location.replace('');
         }
     }
@@ -233,6 +238,8 @@ btnSearch.onclick = function () {
 // Close Lookup
 close.onclick = function () {
     lookup__info.classList.remove('open');
+    $('#txtSearch').value = '';
+    $('#txtSearch').focus();
 }
 
 
@@ -357,6 +364,7 @@ function showPerson() {
         }
     })
     $('#tbl__customer tbody').innerHTML = table;
+
 }
 
 // Edit Customer
@@ -476,18 +484,19 @@ function showListPages() {
         list += `<li>${i}</li>`
     }
     $('.number__page').innerHTML = list
+    // changePage()
 }
 
 // Pages Number
-function changePage() {
-    // var cPage = $$('.number__page li')
+// function changePage() {
+//     var cPage = $$('.number__page li')
 
-    // for (var i = 0; i < cPage.length; i++) {
-    //     cPage[i].addEventListener('click', () => {
-    //         console.log(i);
-    //     })
-    // }
-}
+//     for (var i = 0; i < cPage.length; i++) {
+//         cPage[i].addEventListener('click', () => {
+//             console.log(i);
+//         })
+//     }
+// }
 
 // Next Page
 btnNext.onclick = function () {
